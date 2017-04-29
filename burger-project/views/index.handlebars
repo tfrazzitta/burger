@@ -1,0 +1,78 @@
+<div class="container">
+<div class="jumbotron">
+  <h1 class="display-3">Burger Mania</h1>
+<h3>Add a burger</h3>
+
+<form class="create-update-form" action="/" method="POST">
+  <div class="form-group">
+    <label for="ca"></label>
+    <input type="text" id="ca" name="name">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add burger</button>
+</form>
+ 
+
+</div>
+
+
+
+
+
+
+
+<div class="row">
+<div class="col-sm-3" ></div>
+<div class="col-sm-3" id="fill">
+<img src="http://www.mcdonalds.ca/content/dam/Canada/en/product_pages/snacks-sides/hero/hero_world-famous-fries.png">
+<div id="full">
+<!-- <div id="size"></div> -->
+
+<ol id="first">
+<h3>My Burgers</h3>
+  {{#each burger}}
+    {{#unless this.devoured}}
+      <li>
+        {{this.name}}
+
+        <form action="/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devoured" value="1">
+          <button type="submit" id="delete" class="btn btn-primary">Devoured</button>
+        </form>
+
+       
+      </li>
+    {{/unless}}
+  {{/each}}
+</ol>
+</div>
+</div>
+
+
+
+<div class="col-sm-3" id="fill" >
+<img src="http://www.mcdonalds.ca/content/dam/Canada/en/product_pages/burgers-sandwiches/hero/hero_big-mac.png">
+<div id="full">
+<ol id="second">
+<h3>Devoured</h3>
+  {{#each burger}}
+    {{#if this.devoured}}
+      <li>
+        {{this.name}}
+
+        <form action="/{{this.id}}?_method=DELETE" method="POST">
+          <input type="hidden" name="devoured" value="0">
+          <button type="submit" id="delete" class="btn btn-primary">Delete</button>
+        </form>
+
+        
+      </li>
+    {{/if}}
+  {{/each}}
+</ol>
+
+</div>
+ </div>
+ <div class="col-sm-3" ></div>
+ </div>
+</div>
